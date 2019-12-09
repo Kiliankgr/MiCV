@@ -2,7 +2,8 @@
 <cv>
     <contacto>
         <emails direccion="cnorris@gmail.com"/>
-        <telefonos numero="922631444" tipo="DOMICILIO"/>
+        <emails direccion="otroNorris@gmail.com"/>
+        <telefonos numero="922631444"/>
         <telefonos numero="666112222" tipo="MOVIL"/>
         <webs url="http://www.cnorris.com"/>
     </contacto>
@@ -20,7 +21,7 @@
     <personal identificacion="12345678Z">
         <apellidos>Norris</apellidos>
         <codigoPostal>38204</codigoPostal>
-        <direccion>Calle no se qué, 12</direccion>
+        <direccion>Calle no se qué, 12 de no se donde</direccion>
         <fechaNacimiento>1942-10-06</fechaNacimiento>
         <localidad>La Laguna</localidad>
         <nacionalidades denominacion="Estadounidense"/>

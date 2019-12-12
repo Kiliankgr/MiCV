@@ -2,65 +2,41 @@ package dad.javafx.micv.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
-import dad.javafx.micv.clases.Conocimiento;
-import dad.javafx.micv.clases.Experiencia;
-import dad.javafx.micv.clases.Idioma;
-import dad.javafx.micv.utils.ConocimientoDialog;
+
+import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.ComboBoxListCell;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 
 public class ConocimientosController implements Initializable {
 
-	public enum eTipoConocimiento {
-		
-		CON_ESTANDAR,
-		CON_IDIOMA
-	};
-	
-	// View : FXML
-	
-	//-------------------------------------------------------------------------
+	// View 
     @FXML
     private HBox view;
 
     @FXML
-    private TableView<Conocimiento> conocimientoTbl;
+    private TableView<?> conocimientoTable;
 
     @FXML
-    private Button addKBt;
+    private Button addConocimientoButton;
 
     @FXML
-    private Button addLBt;
+    private Button addIdiomaButton;
 
     @FXML
-    private Button delBt;
+    private Button eliminarButton;
     
     @FXML
-    private TableColumn<Conocimiento, Conocimiento.Nivel> nivelCol;
+    private TableColumn<?, ?> nivelColumn;
     
-    //-------------------------------------------------------------------------
-    
-    // Model
-    private ListProperty<Conocimiento> conocimientos = new SimpleListProperty<Conocimiento>(FXCollections.observableArrayList(new ArrayList<Conocimiento>()));
-    
+    // Model  
 	public ConocimientosController() throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/ConocimientosView.fxml"));
@@ -70,74 +46,26 @@ public class ConocimientosController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		// Ajustamos la columna de la tabla nivel manualmente por ser un ComboBox
-		nivelCol.setCellFactory(ComboBoxTableCell.forTableColumn(Conocimiento.getNiveles()));
-		conocimientoTbl.itemsProperty().bindBidirectional(conocimientos);
-		
-		addKBt.setOnAction( evt -> onAddAction(eTipoConocimiento.CON_ESTANDAR) );
-		addLBt.setOnAction( evt -> onAddAction(eTipoConocimiento.CON_IDIOMA) );
-		
-		delBt.setOnAction( evt -> onRemoveAction() );
-		
-		delBt.disableProperty().bind( conocimientoTbl.getSelectionModel().selectedItemProperty().isNull() );
+		eliminarButton.setOnAction( e -> onQuitarAction() );		
+		addConocimientoButton.setOnAction( e -> onAddAction() );
+		addIdiomaButton.setOnAction( e -> onAddAction() );
 	}
 	
-	private void onRemoveAction() {
-
-		Conocimiento conocimiento = conocimientoTbl.getSelectionModel().getSelectedItem();
-		
-		if( conocimiento != null ) {
-			
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setHeaderText("Eliminar conocimiento");
-			alert.setContentText(String.format("¿Está seguro de eliminar %s?", conocimiento.getDenominacion()));
-			
-			if( alert.showAndWait().get() == ButtonType.OK ) {
-				conocimientos.remove(conocimiento);
-			}
-		}
+	private void onQuitarAction() {			
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Eliminar conocimiento");
+		alert.setContentText("Aún no implementado");
+		alert.showAndWait();
 	}
 
-	private void onAddAction( eTipoConocimiento tipo ) {
-
-		ConocimientoDialog dialog = new ConocimientoDialog(tipo);
-		
-		if( tipo == eTipoConocimiento.CON_ESTANDAR ) {
-			Optional<Conocimiento> conocimiento = dialog.showAndWait();
-			
-			if( conocimiento.isPresent() ) {
-				conocimientos.add(conocimiento.get());
-			}
-			
-		} else {
-			Optional<Conocimiento> idioma = dialog.showAndWait();
-			
-			if( idioma.isPresent() ) {
-				Idioma nuevoIdioma = (Idioma) idioma.get();
-				conocimientos.add(nuevoIdioma); // Para los idiomas es igual
-			}
-		}
+	private void onAddAction() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setHeaderText("Añadir conocimiento");
+		alert.setContentText("Aún no implementado");	
+		alert.showAndWait();
 	}
-
-	public HBox getRootView() {
+	
+	public HBox getRoot() {
 		return view;
-	}
-
-	public final ListProperty<Conocimiento> conocimientosProperty() {
-		return this.conocimientos;
-	}
-	
-
-	public final ObservableList<Conocimiento> getConocimientos() {
-		return this.conocimientosProperty().get();
-	}
-	
-
-	public final void setConocimientos(final ObservableList<Conocimiento> conocimientos) {
-		this.conocimientosProperty().set(conocimientos);
-	}
-	
-	
-
+	}	
 }

@@ -11,7 +11,7 @@
 
 <HBox fx:id="view" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<TableView fx:id="conocimientoTbl" editable="true" HBox.hgrow="ALWAYS">
+		<TableView fx:id="conocimientoTable" editable="true" HBox.hgrow="ALWAYS">
 			<columns>
 				<TableColumn prefWidth="75.0" text="Denominación">
 				<cellFactory><TextFieldTableCell fx:factory="forTableColumn" /></cellFactory>
@@ -19,7 +19,7 @@
 						<PropertyValueFactory property="denominacion" />
 					</cellValueFactory>
 				</TableColumn>
-				<TableColumn fx:id="nivelCol" prefWidth="75.0" text="Nivel">
+				<TableColumn fx:id="nivelColumn" prefWidth="75.0" text="Nivel">
 					<cellValueFactory>
 						<PropertyValueFactory property="nivel" />
 					</cellValueFactory>
@@ -31,9 +31,9 @@
 		</TableView>
 		<VBox spacing="5.0">
 			<children>
-				<Button fx:id="addKBt" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Añadir conocimiento" />
-				<Button fx:id="addLBt" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Añadir idioma" />
-				<Button fx:id="delBt" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Eliminar" />
+				<Button fx:id="addConocimientoButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Añadir conocimiento" />
+				<Button fx:id="addIdiomaButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Añadir idioma" />
+				<Button fx:id="eliminarButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Eliminar" />
 			</children>
 			<padding>
 				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

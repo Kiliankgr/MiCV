@@ -20,20 +20,19 @@ public class CV {
 	
 	private ListProperty<Titulo> formacion = new SimpleListProperty<>(FXCollections.observableArrayList(new ArrayList<>()));
 	private ListProperty<Experiencia> experiencias = new SimpleListProperty<>(FXCollections.observableArrayList(new ArrayList<>()));
-	private ListProperty<Conocimiento> habilidades = new SimpleListProperty<>(FXCollections.observableArrayList(new ArrayList<>()));
-
 	private ObjectProperty<Contacto> contacto = new SimpleObjectProperty<Contacto>();
 
-	public CV() {
-		
-	}
 	
-	public CV(Personal personal, ArrayList<Titulo> titutlos, ArrayList<Experiencia> experiencias, ArrayList<Idioma> idiomas, Contacto contacto) {
+	
+	public CV(Personal personal, ArrayList<Titulo> titutlos, ArrayList<Experiencia> experiencias, Contacto contacto) {
 		this.personal.set(personal);
 		this.contacto.set(contacto);
 		this.formacion.addAll(formacion);
 		this.experiencias.addAll(experiencias);
-		this.habilidades.addAll(idiomas);
+		//this.habilidades.addAll(idiomas);
+	}
+	public CV() {
+		
 	}
 
 	public final ObjectProperty<Personal> personalProperty() {
@@ -81,24 +80,7 @@ public class CV {
 
 	public final void setExperiencias(final ObservableList<Experiencia> experiencia) {
 		this.experienciasProperty().set(experiencia);
-	}
-	
-
-	public final ListProperty<Conocimiento> habilidadesProperty() {
-		return this.habilidades;
-	}
-	
-
-	@XmlElement
-	public final ObservableList<Conocimiento> getHabilidades() {
-		return this.habilidadesProperty().get();
-	}
-	
-
-	public final void setHabilidades(final ObservableList<Conocimiento> habilidades) {
-		this.habilidadesProperty().set(habilidades);
-	}
-	
+	}	
 
 	public final ObjectProperty<Contacto> contactoProperty() {
 		return this.contacto;

@@ -11,14 +11,14 @@
 
 <HBox fx:id="view" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<TableView editable="true" fx:id="experienciaTbl" HBox.hgrow="ALWAYS">
+		<TableView fx:id="experienciaTable" editable="true" HBox.hgrow="ALWAYS">
 			<columns>
-				<TableColumn fx:id="desdeCol" prefWidth="75.0" text="Desde">
+				<TableColumn fx:id="desdeColumn" prefWidth="75.0" text="Desde">
 					<cellValueFactory>
 						<PropertyValueFactory property="desde" />
 					</cellValueFactory>
 				</TableColumn>
-				<TableColumn fx:id="hastaCol" prefWidth="75.0" text="Hasta">
+				<TableColumn fx:id="hastaColumn" prefWidth="75.0" text="Hasta">
 					<cellValueFactory>
 						<PropertyValueFactory property="hasta" />
 					</cellValueFactory>
@@ -42,8 +42,8 @@
 		</TableView>
 		<VBox spacing="5.0">
 			<children>
-				<Button fx:id="addBt" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Añadir" />
-				<Button fx:id="removeBt" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Eliminar" />
+				<Button fx:id="addButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Añadir" />
+				<Button fx:id="quitarButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Eliminar" />
 			</children>
 			<padding>
 				<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

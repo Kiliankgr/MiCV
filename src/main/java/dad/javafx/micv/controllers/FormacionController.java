@@ -28,8 +28,7 @@ import javafx.scene.layout.HBox;
 
 public class FormacionController implements Initializable {
 
-	// View : FXML
-	//-------------------------------------------------------------------------
+	// View
 	
 	@FXML
 	private HBox view;
@@ -48,8 +47,6 @@ public class FormacionController implements Initializable {
 
     @FXML
     private TableColumn<Titulo, LocalDate> hastaCol;
-	
-	//-------------------------------------------------------------------------
 	    
 	// Model
 	private ListProperty<Titulo> titulos = new SimpleListProperty<>(FXCollections.observableArrayList(new ArrayList<>()));
@@ -64,9 +61,8 @@ public class FormacionController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		// Usamos una librería para poder implementar el LocalDateTableCell, que no es sencillo
-		// Esto es otra manera de instanciar las expresiones Lambda
-		desdeCol.setCellFactory(LocalDateTableCell::new); // Equivalente a desdeCol.setCellFactory( t -> {return new LocalDateTableCell<>(t); });
+		// Usamos una librería para poder implementar el LocalDateTableCell
+		desdeCol.setCellFactory(LocalDateTableCell::new); 
 		hastaCol.setCellFactory(LocalDateTableCell::new);
 		
 		formacionTbl.itemsProperty().bindBidirectional(titulos);
@@ -85,7 +81,7 @@ public class FormacionController implements Initializable {
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Eliminar título");
-			alert.setContentText(String.format("¿Está seguro de eliminar el título %s?", titulo.getDenominacion()));
+			alert.setContentText("¿Está seguro de eliminar el título"+ titulo.getDenominacion()+"?");
 			
 			if( alert.showAndWait().get() == ButtonType.OK ) {
 				titulos.remove(titulo);
@@ -104,7 +100,7 @@ public class FormacionController implements Initializable {
 		}
 	}
 
-	public HBox getRootView() {
+	public HBox getRoot() {
 		return view;
 	}
 

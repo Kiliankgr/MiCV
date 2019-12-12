@@ -2,14 +2,10 @@ package dad.javafx.micv.clases;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
 import dad.javafx.micv.utils.DateAdapter;
-
 import javax.xml.bind.annotation.XmlAttribute;
 
 import javafx.beans.property.ListProperty;

@@ -1,12 +1,8 @@
 package dad.javafx.micv.clases;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-
-import dad.javafx.micv.clases.Telefono.TipoTelefono;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,10 +13,6 @@ import javafx.collections.ObservableList;
 
 @XmlType
 public class Telefono {
-
-	
-
-	
 	private StringProperty numero = new SimpleStringProperty();
 	private ObjectProperty<TipoTelefono> tipo = new SimpleObjectProperty<>();
 	
@@ -59,13 +51,11 @@ public class Telefono {
 		return this.numero;
 	}
 	
-
 	@XmlAttribute
 	public final String getNumero() {
 		return this.numeroProperty().get();
 	}
 	
-
 	public final void setNumero(final String numero) {
 		this.numeroProperty().set(numero);
 	}

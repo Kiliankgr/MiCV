@@ -32,8 +32,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable {
 
-	// View : FXML
-	//-------------------------------------------------------------------------
+	// View
 	
 	@FXML
 	private BorderPane view;
@@ -71,10 +70,7 @@ public class MainController implements Initializable {
     @FXML
     private Tab conocimientosTab;
 	
-  //-------------------------------------------------------------------------
-    
     // Model
-    // Básicamente vamos a tener el objeto CV
     private ObjectProperty<CV> cv = new SimpleObjectProperty<CV>();
     
 	// Tabs controllers
@@ -102,16 +98,16 @@ public class MainController implements Initializable {
 			personalTab.setContent(personalController.getRootView());
 			
 			contactoController = new ContactoController();
-			contactoTab.setContent(contactoController.getRootView());
+			contactoTab.setContent(contactoController.getRoot());
 
 			formacionController = new FormacionController();
-			formacionTab.setContent(formacionController.getRootView());
+			formacionTab.setContent(formacionController.getRoot());
 			
 			experienciaController = new ExperienciaController();
-			experienciaTab.setContent(experienciaController.getRootView());
+			experienciaTab.setContent(experienciaController.getRoot());
 			
 			conocimientosController = new ConocimientosController();
-			conocimientosTab.setContent(conocimientosController.getRootView());
+			conocimientosTab.setContent(conocimientosController.getRoot());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -123,11 +119,11 @@ public class MainController implements Initializable {
 		loadMainData();
 		
 		//cargamos los eventos de los menus
-		nuevoMenuItem.setOnAction(evt -> onMenuNew() );
-		abrirMenuItem.setOnAction( evt -> onMenuOpen() );
-		guardarMenuItem.setOnAction( evt -> onMenuSave() );
-		guardarOtroMenuItem.setOnAction( evt -> onMenuSaveOther() );
-		salirMenuItem.setOnAction( evt -> onMenuExit() );	
+		nuevoMenuItem.setOnAction(e -> onMenuNew() );
+		abrirMenuItem.setOnAction( e -> onMenuOpen() );
+		guardarMenuItem.setOnAction( e -> onMenuSave() );
+		guardarOtroMenuItem.setOnAction( e -> onMenuSaveOther() );
+		salirMenuItem.setOnAction( e -> onMenuExit() );	
 	}
 	
 	private void onMenuNew() {
@@ -135,7 +131,7 @@ public class MainController implements Initializable {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Nuevo documento");
 		alert.setHeaderText("Establecer nuevo documento .cv");
-		alert.setContentText("¿ Está seguro de crear un nuevo documento ?");
+		alert.setContentText("¿Está seguro de crear un nuevo documento ?");
 		
 		if( alert.showAndWait().get() == ButtonType.OK ) {
 			// Limpiamos todos los datos
@@ -238,7 +234,7 @@ public class MainController implements Initializable {
 		// Ahora bindeamos las listas de las otras pestañas para tenerlos actualizados
 		formacionController.titulosProperty().bindBidirectional(cv.get().formacionProperty());
 		experienciaController.listExperienciaProperty().bindBidirectional(cv.get().experienciasProperty());
-		conocimientosController.conocimientosProperty().bindBidirectional(cv.get().habilidadesProperty());
+		//conocimientosController aun no implementado
 	}
 	
 	public static void enviarError( String msg ) {

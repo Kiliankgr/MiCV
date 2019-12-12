@@ -29,28 +29,25 @@ import javafx.scene.layout.HBox;
 
 public class ExperienciaController implements Initializable {
 
-	// View : FXML
-	//-------------------------------------------------------------------------
+	// View 
 	
     @FXML
     private HBox view;
 
     @FXML
-    private TableView<Experiencia> experienciaTbl;
+    private TableView<Experiencia> experienciaTable;
 
     @FXML
-    private Button addBt;
+    private Button addButton;
 
     @FXML
-    private Button removeBt;
+    private Button quitarButton;
     
     @FXML
-    private TableColumn<Titulo, LocalDate> desdeCol;
+    private TableColumn<Titulo, LocalDate> desdeColumn;
 
     @FXML
-    private TableColumn<Titulo, LocalDate> hastaCol;
-    
-    //-------------------------------------------------------------------------
+    private TableColumn<Titulo, LocalDate> hastaColumn;
     
     // Model
     private ListProperty<Experiencia> listExperiencia = new SimpleListProperty<>(FXCollections.observableArrayList(new ArrayList<>()));
@@ -65,27 +62,27 @@ public class ExperienciaController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		desdeCol.setCellFactory(LocalDateTableCell::new); 
-		hastaCol.setCellFactory(LocalDateTableCell::new);
+		desdeColumn.setCellFactory(LocalDateTableCell::new); 
+		hastaColumn.setCellFactory(LocalDateTableCell::new);
 		
-		experienciaTbl.itemsProperty().bindBidirectional(listExperiencia);
+		experienciaTable.itemsProperty().bindBidirectional(listExperiencia);
 		
-		addBt.setOnAction( evt -> onAddAction() );
-		removeBt.setOnAction( evt -> onRemoveAction() );
+		addButton.setOnAction( e -> onAddAction() );
+		quitarButton.setOnAction( e -> onRemoveAction() );
 		
-		removeBt.disableProperty().bind( experienciaTbl.getSelectionModel().selectedItemProperty().isNull() );		
+		quitarButton.disableProperty().bind( experienciaTable.getSelectionModel().selectedItemProperty().isNull() );		
 		
 	}
 	
 	private void onRemoveAction() {
 		
-		Experiencia experiencia = experienciaTbl.getSelectionModel().getSelectedItem();
+		Experiencia experiencia = experienciaTable.getSelectionModel().getSelectedItem();
 		
 		if( experiencia != null ) {
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Eliminar experiencia");
-			alert.setContentText(String.format("¿Está seguro de eliminar %s?", experiencia.getDenominacion()));
+			alert.setContentText("¿Está seguro de eliminar "+ experiencia.getDenominacion()+"?");
 			
 			if( alert.showAndWait().get() == ButtonType.OK ) {
 				listExperiencia.remove(experiencia);
@@ -104,7 +101,7 @@ public class ExperienciaController implements Initializable {
 		}
 	}
 	
-	public HBox getRootView() {
+	public HBox getRoot() {
 		return view;
 	}
 

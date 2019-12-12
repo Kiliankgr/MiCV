@@ -8,11 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import dad.javafx.micv.clases.Experiencia;
 import dad.javafx.micv.clases.Titulo;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.image.Image;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
@@ -61,8 +58,6 @@ public class InsertTableDialog<T> extends Dialog<T> {
 		this.getDialogPane().getButtonTypes().addAll(createBt, cancelBt);
 		
 		this.setResultConverter( bt -> {
-
-			// Aquí nos viene bien usar genéricos, puesto que ambos tienen similares constructores
 			if( bt.getButtonData() == ButtonData.OK_DONE ) {
 				return myClass.cast( myClass == Experiencia.class ?
 						new Experiencia(desdeDatePicker.getValue(), hastaDatePicker.getValue(), denominacionText.getText(), organizadorOEmpleadorText.getText())

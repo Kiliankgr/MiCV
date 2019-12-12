@@ -13,14 +13,6 @@ import javafx.util.StringConverter;
 
 import static java.time.format.FormatStyle.MEDIUM;
 
-/**
- * https://github.com/michael-simons/bikingFX/blob/master/src/main/java/ac/simons/bikingFX/common/LocalDateTableCell.java
- * 
- * Renderes a localized LocalDate
- * 
- * @author Michael J. Simons, 2014-10-17
- * @param <T>
- */
 public class LocalDateTableCell<T> extends TableCell<T, LocalDate> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(MEDIUM);
     private final DatePicker datePicker;
@@ -60,9 +52,8 @@ public class LocalDateTableCell<T> extends TableCell<T, LocalDate> {
 	    }
 	});	
 	
-	// Bind this cells editable property to the whole column
 	editableProperty().bind(column.editableProperty());
-	// and then use this to configure the date picker
+	
 	contentDisplayProperty().bind(Bindings
 		.when(editableProperty())
                     .then(ContentDisplay.GRAPHIC_ONLY)
@@ -78,7 +69,6 @@ public class LocalDateTableCell<T> extends TableCell<T, LocalDate> {
 	    setText(null);
 	    setGraphic(null);
 	} else {
-	    // Datepicker can handle null values
 	    this.datePicker.setValue(item);	    
 	    setGraphic(this.datePicker);
 	    if(item == null) {

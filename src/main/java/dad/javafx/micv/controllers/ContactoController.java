@@ -2,7 +2,6 @@ package dad.javafx.micv.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -15,20 +14,14 @@ import dad.javafx.micv.utils.TelefonoDialog;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
@@ -40,18 +33,6 @@ import javafx.stage.Stage;
 public class ContactoController implements Initializable {
 
 	// Propiedades de diálogo de las tablas
-	
-	private final String tlfButtonID = "tlf_removeBt";
-	private final String tlfTableRemoveHeader = "Eliminar teléfono";
-	private final String tlfTableRemoveContent = "¿Está seguro de eliminar este teléfono?";
-	
-	private final String emailButtonID = "email_removeBt";
-	private final String emailTableRemoveHeader = "Eliminar e-mail";
-	private final String emailTableRemoveContent = "¿Está seguro de eliminar este e-mail?";
-	
-	private final String webButtonID = "web_removeBt";
-	private final String webTableRemoveHeader = "Eliminar web";
-	private final String webTableRemoveContent = "¿Está seguro de eliminar esta URL?";
 	
 	// View 
     @FXML
@@ -158,8 +139,6 @@ public class ContactoController implements Initializable {
 		}
 	}
 	
-	
-	
 	 //Añadimos un nuevo e-mail
 	 
 	private void onAddCorreo(ActionEvent e) {
@@ -207,8 +186,7 @@ public class ContactoController implements Initializable {
 		
 		Optional<Telefono> tlf = dialog.showAndWait();
 		
-		if( tlf.isPresent() && tlf.get() != null ) {
-			
+		if( tlf.isPresent() && tlf.get() != null ) {		
 			// Añadimos el nuevo teléfono
 			getContacto().getTelefonos().add(tlf.get());
 		}
@@ -228,7 +206,7 @@ public class ContactoController implements Initializable {
 		Bindings.bindBidirectional(webTable.itemsProperty(), nuevoContacto.websProperty());
 	}
 
-	public VBox getRootView() {
+	public VBox getRoot() {
 		return view;
 	}
 
